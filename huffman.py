@@ -23,11 +23,6 @@ while len(Nodes) > 1:
     c.left, c.right = a, b
 
     Nodes.append(c)
-    #for index in range(len(Nodes)):
-    #    if Nodes[index].count < c.count:
-    #        Nodes[index:index] = [c]
-    #        break
-    #    if index == len(Nodes):
-    #        Nodes.append(c)
-    #        break
-#print(Nodes)
+    Nodes.sort(key=lambda x: x.count, reverse=True)
+          
+print(Nodes[0].right.right.right.letter)
