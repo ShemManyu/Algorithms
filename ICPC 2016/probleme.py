@@ -1,7 +1,8 @@
 import math
 
-def main():
-    print(finda_and_b(6561))
+def main(val):
+    a, b = finda_and_b(val)
+    print("{}^{}".format(int(a), b))
 
 def finda_and_b(n):
     max = int(math.sqrt(n))
@@ -27,4 +28,12 @@ def isprime(n):
     return True
 
 if __name__ == "__main__":
-    main()
+    vals = []
+    while True:
+        inputs = input().strip()
+        if inputs == '-1':
+            break
+        else:
+            vals.append(int(inputs))
+    for val in vals:
+        main(val)
