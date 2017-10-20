@@ -1,14 +1,17 @@
 import math
-def main():
-    pass
 
-def finda(n):
+def main():
+    print(finda_and_b(6561))
+
+def finda_and_b(n):
+    max = int(math.sqrt(n))
     if isprime(n):
         return n, 1
-    else:
-        for i in range(2, math.sqrt(n)):
-            pass
-            
+    for b in reversed(range(2, max)):
+        a = (n**(1/float(b)))
+        if int(a) == a:
+            return a, b
+
 def isprime(n):
     if n <= 1:
         return False
