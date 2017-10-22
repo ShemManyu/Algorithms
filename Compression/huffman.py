@@ -1,8 +1,7 @@
 from collections import Counter
-import copy
 
 #Structure to represent nodes in a tree
-#Letter is optional value since merging of two nodes will only hod a count value 
+#Letter parameter is optional since merging of two nodes will only hold a count value 
 class HuffNode:
     def __init__(self, count, letter=None):
         self.letter = letter
@@ -12,10 +11,11 @@ class HuffNode:
 
 word = input()
 d = dict(Counter(word))
-
 #List of nodes that is sorted based on word count from most frequent to least frequent
 Nodes = [HuffNode(d[w], w) for w in sorted(d, key=d.get, reverse=True)]
 
+#This could be done better. After two letters are merged
+#generate a new node and append it to the list of nodes then sort the list
 while len(Nodes) > 1:
     a = Nodes.pop()
     b = Nodes.pop()
@@ -26,21 +26,15 @@ while len(Nodes) > 1:
     Nodes.append(c)
     Nodes.sort(key=lambda x: x.count, reverse=True)
 
-def printcode(l, n, code = ''):
-    if n.letter == l:
-        return code
+def make_code(node, prefix=''):
+    if node is None:
+        return []
+    if node.letter is not None:
+        return [(prefix, node.letter)]
     else:
-        try:
-            #print(n.count)
-            return printcode(l, n.left, code + '0')
-        except:
-            #print(n.count)
-            return printcode(l, n.right, code + '1')
+        result = []
+        result.extend(make_code(node.left, prefix + '0'))
+        result.extend(make_code(node.right, prefix + '1'))
+        return result
 
-#def traversal(node, d):
-#    codes = copy.deepcopy(d)
-#    for k in d.keys():
-#        pass
-#    if node.left == None and node.right == None:
-        
-print(printcode('h', Nodes[0]))
+print(make_code(Nodes[0]))
