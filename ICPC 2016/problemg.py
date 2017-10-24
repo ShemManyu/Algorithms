@@ -10,8 +10,8 @@ def return_word(val, alphabet, word=''):
     if int(val % 26) != 0:
         mod = int(val % 26)
         
-    if val <  26:
-        word = alphabet[val] + word 
+    if val <=  26:
+        word = alphabet[val] + word
         return word
     return return_word((val - mod) / 26, alphabet, alphabet[mod] + word)
 
